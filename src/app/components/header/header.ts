@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-header',
+  standalone: true,
   imports: [],
   templateUrl: './header.html',
-  styleUrl: './header.scss'
+  styleUrls: ['./header.scss'],
 })
-export class Header {
-
-}
+export class HeaderComponent {}
