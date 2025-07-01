@@ -1,19 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { BtnPrimary } from "../btn-primary/btn-primary";
 import { EmailValidator, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Newsletter } from '../../services/newsletter';
 
 @Component({
   selector: 'app-newsletter-form',
   imports: [BtnPrimary,
     ReactiveFormsModule
   ],
+  providers: [
+    NewsletterService
+  ],
   templateUrl: './newsletter-form.html',
   styleUrl: './newsletter-form.scss'
 })
 export class NewsletterForm {
     newsletterForm!: FormGroup;
+    loading = signal (false);
 
-    constructor() {
+    constructor(private service: NewsletterService) {
       this.newsletterForm = new FormGroup({
         name: new FormControl('', [Validators.required]),
         email: new FormControl('', [Validators.required, Validators.email]),
@@ -21,7 +26,15 @@ export class NewsletterForm {
     }
 
     onSubmit(){
-      console.log(this.newsletterForm.value)
+      this.loading.set(true);
+      if(this.newsletterForm.valid){
+        this.service.sendData(this.newsletterForm.value.name, this.newsletterForm.value.email).subscribe({
+          next: () => {
+            this.newsletterForm.reset
+            this.loading.set(false);
+          }
+        })
+      }
     }
 }
 
