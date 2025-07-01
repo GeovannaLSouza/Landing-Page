@@ -12,5 +12,8 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideClientHydration(),
     provideHttpClient(withFetch())
+
+    //In the video in question, there was an explanation and implementation 
+    //of the HttpClientModule Provider with Fetch and the closing of the landing page.
   ]
 };
