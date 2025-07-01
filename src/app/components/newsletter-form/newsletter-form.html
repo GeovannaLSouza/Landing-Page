@@ -10,11 +10,16 @@
                Quisque sagittis orci ut diam condimentum, vel euismod erat placerat. In iaculis arcu eros, eget temp.
             </p>
     </div>
-    <form>
+    <form [formGroup]="newsletterForm">
         <label for="name">Your name</label>
-        <input id="name"/>
+        <input id="name" formControlName="name"/>
         <label for="email">Your e-mail</label>
-        <input id="email"/>
-        <app-btn-primary btn-text="Subscribe" variable="secondary"></app-btn-primary>
+        <input id="email" formControlName="email"/>
+        <app-btn-primary 
+        btn-text="Subscribe" 
+        variant="secondary"
+        (submit)="onSubmit()"
+        [disabled]="!newsletterForm.valid"
+        ></app-btn-primary>
     </form>
 </section>
