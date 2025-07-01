@@ -19,3 +19,7 @@ export class NewsletterForm {
       });
     }
 }
+
+//I accidentally ended up making the commit redundant, 
+// because I forgot to delete what I had already written, 
+// and the title ended up being bad, sorry to anyone who is reading hahaha
